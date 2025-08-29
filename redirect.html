@@ -46,16 +46,12 @@
     }
   </style>
   <script>
-    // SEU LINK DO APPS SCRIPT JÁ ESTÁ INSERIDO AQUI.
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrHV9imZZM5uTYE7DjAO5qYQpxSbU6lezZ9hgBb-a3BjIxwSyKiWep0KT5TmUZlfo5NA/exec";
+    // ***** SUA NOVA URL ATUALIZADA ESTÁ AQUI *****
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJGXfm7fUNJ0p8lpNpFE254m1mxPbs-dwSx10Bkxc8cueHo84z7oay0Di064uNkkH53g/exec";
 
-    // SEU LINK DO GRUPO DE WHATSAPP JÁ ESTÁ INSERIDO AQUI.
+    // SEU LINK DO GRUPO DE WHATSAPP.
     const LINK_WHATSAPP = "https://chat.whatsapp.com/Hwf3O51qdvmCLF1RE8KmLH";
 
-    /**
-     * Função executada assim que a página carrega.
-     * Ela captura os dados, envia para a planilha e depois redireciona.
-     */
     async function registrarAcesso() {
       const params = new URLSearchParams(window.location.search);
       const origem = params.get("origem") || "desconhecido";
