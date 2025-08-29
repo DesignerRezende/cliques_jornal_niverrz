@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contando Acesso - Rezende</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    body {
+      background-color: #141b4d;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 15px;
+    }
+    .logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      color: #ff7a15;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .loader {
+      border: 6px solid #ffffff;
+      border-top: 6px solid #ff7a15;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <script>
+    // SEU LINK DO APPS SCRIPT JÁ ESTÁ INSERIDO AQUI.
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrHV9imZZM5uTYE7DjAO5qYQpxSbU6lezZ9hgBb-a3BjIxwSyKiWep0KT5TmUZlfo5NA/exec";
+
+    // SEU LINK DO GRUPO DE WHATSAPP JÁ ESTÁ INSERIDO AQUI.
+    const LINK_WHATSAPP = "https://chat.whatsapp.com/Hwf3O51qdvmCLF1RE8KmLH";
+
+    /**
+     * Função executada assim que a página carrega.
+     * Ela captura os dados, envia para a planilha e depois redireciona.
+     */
+    async function registrarAcesso() {
+      const params = new URLSearchParams(window.location.search);
+      const origem = params.get("origem") || "desconhecido";
+      const fullUrl = window.location.href;
+
+      const dados = {
+        origem: origem,
+        fullUrl: fullUrl
+      };
+
+      console.log("Dados que serão enviados para o Apps Script:", dados);
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dados),
+          mode: 'no-cors'
+        });
+        console.log("Dados de acesso enviados com sucesso.");
+      } catch (error) {
+        console.error("Erro ao registrar o acesso:", error);
+      }
+
+      setTimeout(() => {
+        window.location.href = LINK_WHATSAPP;
+      }, 1000);
+    }
+  </script>
+</head>
+<body onload="registrarAcesso()">
+  <img src="https://raw.githubusercontent.com/DesignerRezende/avaliacoes-rezende/main/Logo%20Rezende%20Branca.png" alt="Rezende Materiais para Construção" class="logo">
+  <h1>Aguarde um instante...</h1>
+  <p>Estamos redirecionando você para o nosso grupo.</p>
+  <div class="loader"></div>
+</body>
+</html>
